@@ -1,6 +1,6 @@
 import { firebase, googleAuthProvider } from '../firebase/firebase-config';
 
-import { types } from "../types/types"
+import { types } from '../types/types';
 
 export const startLoginEmailPassword = (email, password) => {
       
@@ -13,7 +13,25 @@ export const startLoginEmailPassword = (email, password) => {
         }, 3500);
 
     }
+}
 
+export const starRegisterWhithEmailPasswordName = ( email, password, name) => {
+
+    return (dispatch) => {
+
+        firebase.auth().createUserWithEmailAndPassword( email, password) //el displayName se guarda como null
+            .then( async ({ user }) => {
+
+                await user.updateProfile( {displayName: name} );   //una vez se crea el usuario le agregamos el displayName
+
+                dispatch(login(user.uid, user.displayName));
+            })
+            .catch( error => {
+                console.log(error)
+            } 
+            );
+
+    }
 }
 
 export const startGoogleLogin = () => {
