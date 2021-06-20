@@ -1,17 +1,23 @@
 import { firebase, googleAuthProvider } from '../firebase/firebase-config';
 
 import { types } from '../types/types';
+import { uiFinishLoading, uiStarLoading } from './ui';
 
 export const startLoginEmailPassword = (email, password) => {
       
     return ( dispatch ) => {
 
+        dispatch( uiStarLoading() );
         firebase.auth().signInWithEmailAndPassword( email, password )
-            .then( ( { user } ) => {
-                dispatch( login(user.uid, user.displayName) );
-            }).catch( error => {
-                console.log( error );
-            });
+        .then( ( { user } ) => {
+            
+            dispatch( uiFinishLoading() );
+            dispatch( login(user.uid, user.displayName) );
+            
+        }).catch( error => {
+            console.log( error );
+            dispatch( uiFinishLoading() );
+        });
 
     }
 }

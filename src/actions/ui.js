@@ -12,3 +12,12 @@ export const removeError = (  ) => ({
         type: types.uiRemoveError
 
 });
+
+export const uiStarLoading= (  ) => ({
+        type: types.uiStarLoading
+})
+
+export const uiFinishLoading= (  ) => ({
+        type: types.uiFinishLoading
+
+})
