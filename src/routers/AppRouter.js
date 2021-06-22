@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
-import { JournalScreen } from '../components/journal/JournalScreen';
-import { AuthRouter } from './AuthRouter';
+import { BrowserRouter as Router, Redirect, Switch } from 'react-router-dom';
 import { firebase } from '../firebase/firebase-config'
-import { login } from '../actions/auth';
-import { PublicRoute } from './PublicRoute';
+
+import { AuthRouter } from './AuthRouter';
 import { PrivateRoute } from './PrivateRoute';
+import { PublicRoute } from './PublicRoute';
+
+import { login } from '../actions/auth';
+import { JournalScreen } from '../components/journal/JournalScreen';
 
 export const AppRouter = () => {
 
